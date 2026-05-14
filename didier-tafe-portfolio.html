@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Didier Romuald TAFE — Chef de Projet / Project Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #080d1a; --navy2: #0e1628; --navy3: #16213a;
+    --gold: #c9a227; --gold-light: #e8c84a; --gold-dim: rgba(201,162,39,0.15);
+    --white: #f4f0e8; --muted: #7a7f96; --border: rgba(201,162,39,0.2);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--navy); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  /* LANG TOGGLE */
+  .lang-toggle { display: flex; background: var(--navy3); border: 1px solid var(--border); overflow: hidden; }
+  .lang-btn { padding: 0.35rem 0.8rem; cursor: pointer; border: none; background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; transition: all 0.2s; }
+  .lang-btn.active { background: var(--gold); color: var(--navy); }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 5vw; display: flex; justify-content: space-between; align-items: center; background: rgba(8,13,26,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); gap: 1rem; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--gold); letter-spacing: 0.05em; white-space: nowrap; }
+  .nav-right { display: flex; align-items: center; gap: 2rem; }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 10vh 5vw 5vh; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 80% 40%, rgba(201,162,39,0.07) 0%, transparent 60%), radial-gradient(ellipse 40% 50% at 10% 80%, rgba(30,50,120,0.3) 0%, transparent 50%); pointer-events: none; }
+  .hero-tag { font-size: 0.73rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 9vw, 7.5rem); font-weight: 300; line-height: 1.0; color: var(--white); margin-bottom: 0.25rem; }
+  h1 span { color: var(--gold); font-weight: 600; }
+  .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 300; color: var(--muted); margin-bottom: 2rem; }
+  .hero-desc { max-width: 560px; color: var(--muted); font-size: 1rem; line-height: 1.8; margin-bottom: 3rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-gold { padding: 0.85rem 2rem; background: var(--gold); color: var(--navy); font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline { padding: 0.85rem 2rem; background: transparent; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; flex-wrap: wrap; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 600; color: var(--gold); display: block; line-height: 1; }
+  .stat-label { font-size: 0.67rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  /* SECTIONS */
+  section { padding: 6rem 5vw; }
+  .section-tag { font-size: 0.67rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--white); margin-bottom: 3rem; line-height: 1.2; }
+  h2 em { color: var(--gold); font-style: normal; font-weight: 600; }
+  .divider { width: 100%; height: 1px; background: var(--border); }
+
+  /* ABOUT */
+  #about { background: var(--navy2); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .about-text p { color: var(--muted); margin-bottom: 1.2rem; }
+  .about-text p strong { color: var(--white); font-weight: 500; }
+  .about-card { background: var(--navy3); border: 1px solid var(--border); padding: 2rem; }
+  .about-card-title { font-size: 0.67rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .info-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.88rem; }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { color: var(--muted); }
+  .info-val { color: var(--white); font-weight: 500; }
+
+  /* SKILLS */
+  #skills { background: var(--navy); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; }
+  .skill-card { background: var(--navy2); border: 1px solid var(--border); padding: 1.5rem; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+  .skill-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; gap: 0.5rem; }
+  .skill-name { font-weight: 500; font-size: 0.95rem; }
+  .badge { font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.22rem 0.6rem; font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+  .badge-todo { background: rgba(122,127,150,0.15); color: var(--muted); }
+  .badge-progress { background: rgba(201,162,39,0.15); color: var(--gold); }
+  .badge-done { background: rgba(40,180,100,0.15); color: #4ade80; }
+  .skill-desc { font-size: 0.83rem; color: var(--muted); margin-bottom: 1rem; }
+  .skill-bar-bg { height: 3px; background: rgba(255,255,255,0.08); }
+  .skill-bar { height: 3px; background: var(--gold); }
+
+  /* ROADMAP */
+  #roadmap { background: var(--navy2); }
+  .timeline { position: relative; max-width: 800px; }
+  .timeline::before { content: ''; position: absolute; left: 20px; top: 8px; bottom: 0; width: 1px; background: var(--border); }
+  .tl-item { display: flex; gap: 2rem; margin-bottom: 3rem; position: relative; }
+  .tl-dot { width: 40px; height: 40px; flex-shrink: 0; background: var(--navy3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 600; color: var(--gold); position: relative; z-index: 1; }
+  .tl-item.active .tl-dot { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .tl-content { flex: 1; padding-top: 0.4rem; }
+  .tl-period { font-size: 0.67rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+  .tl-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--white); margin-bottom: 0.4rem; }
+  .tl-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.75rem; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tl-tag { font-size: 0.62rem; letter-spacing: 0.06em; padding: 0.18rem 0.55rem; background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(201,162,39,0.25); }
+  .tl-salary { font-size: 0.75rem; margin-top: 0.65rem; color: #4ade80; }
+
+  /* PROJECTS */
+  #projects { background: var(--navy); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; }
+  .project-card { background: var(--navy2); border: 1px solid var(--border); padding: 2rem; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+  .project-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .project-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 700; color: rgba(201,162,39,0.08); position: absolute; top: 1rem; right: 1.5rem; line-height: 1; }
+  .project-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; margin-top: 0.75rem; }
+  .project-desc { font-size: 0.83rem; color: var(--muted); margin-bottom: 1rem; }
+  .project-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tool-tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.18rem 0.5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--muted); }
+
+  /* CONTACT */
+  #contact { background: var(--navy2); text-align: center; }
+  #contact h2 { text-align: center; }
+  .contact-sub { color: var(--muted); max-width: 480px; margin: -2rem auto 3rem; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .contact-link { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.75rem; background: var(--navy3); border: 1px solid var(--border); color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: border-color 0.2s, color 0.2s; }
+  .contact-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* FOOTER */
+  footer { background: var(--navy); padding: 2rem 5vw; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); flex-wrap: wrap; gap: 0.5rem; }
+  .footer-name { font-family: 'Cormorant Garamond', serif; color: var(--gold); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .nav-links { display: none; }
+    .hero-stats { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">D. R. TAFE</div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about" data-fr="À propos" data-en="About">À propos</a></li>
+      <li><a href="#skills" data-fr="Compétences" data-en="Skills">Compétences</a></li>
+      <li><a href="#roadmap" data-fr="Feuille de route" data-en="Roadmap">Feuille de route</a></li>
+      <li><a href="#projects" data-fr="Projets" data-en="Projects">Projets</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-tag" data-fr="Chef de Projet en Formation · Val-d'Or, Québec 🇨🇦" data-en="Project Manager in Training · Val-d'Or, Québec 🇨🇦">Chef de Projet en Formation · Val-d'Or, Québec 🇨🇦</div>
+  <h1>Didier<br>Romuald <span>TAFE</span></h1>
+  <p class="hero-subtitle" data-fr="Futur Chef de Projet · Passionné de Données" data-en="Future Project Manager · Data Enthusiast">Futur Chef de Projet · Passionné de Données</p>
+  <p class="hero-desc" data-fr="Du Cameroun au Canada — je construis les compétences, certifications et projets pour devenir un Chef de Projet performant. Suivez mon parcours, compétence par compétence." data-en="From Cameroon to Canada — I am building the skills, certifications, and projects to become a high-impact Project Manager. Follow my journey, skill by skill.">Du Cameroun au Canada — je construis les compétences, certifications et projets pour devenir un Chef de Projet performant. Suivez mon parcours, compétence par compétence.</p>
+  <div class="hero-cta">
+    <a href="#roadmap" class="btn-gold" data-fr="Voir ma feuille de route" data-en="See My Roadmap">Voir ma feuille de route</a>
+    <a href="#projects" class="btn-outline" data-fr="Mes projets" data-en="View Projects">Mes projets</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">5</span>
+      <span class="stat-label" data-fr="Phases planifiées" data-en="Planned phases">Phases planifiées</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">18</span>
+      <span class="stat-label" data-fr="Mois pour atteindre l'objectif" data-en="Months to reach the goal">Mois pour l'objectif</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">$100K+</span>
+      <span class="stat-label" data-fr="Salaire cible" data-en="Salary target">Salaire cible</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-tag" data-fr="À propos de moi" data-en="About Me">À propos de moi</div>
+    <h2 data-fr="Un parcours du <em>Cameroun au Canada</em>" data-en="A journey from <em>Cameroon to Canada</em>">Un parcours du <em>Cameroun au Canada</em></h2>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p data-fr="Je m'appelle <strong>Didier Romuald TAFE</strong>. Je vis à Val-d'Or, Québec, et je suis en mission structurée pour devenir Chef de Projet certifié." data-en="My name is <strong>Didier Romuald TAFE</strong>. I am based in Val-d'Or, Québec, and I am on a structured mission to become a certified Project Manager.">Je m'appelle <strong>Didier Romuald TAFE</strong>. Je vis à Val-d'Or, Québec, et je suis en mission structurée pour devenir Chef de Projet certifié.</p>
+      <p data-fr="Après avoir analysé le marché du travail, j'ai choisi de construire mon profil de façon stratégique — en combinant la <strong>gestion de projet Agile</strong> avec des <strong>compétences en analyse de données</strong> pour me démarquer." data-en="After observing the job market, I chose to build my profile strategically — combining <strong>Agile project management</strong> with <strong>data analysis skills</strong> to stand out in the Canadian market.">Après avoir analysé le marché du travail, j'ai choisi de construire mon profil de façon stratégique — en combinant la <strong>gestion de projet Agile</strong> avec des <strong>compétences en analyse de données</strong> pour me démarquer.</p>
+      <p data-fr="Je documente chaque étape ici : ce que j'étudie, ce que j'ai construit, ce que j'ai certifié. <strong>C'est un portfolio vivant</strong> — il grandit avec moi." data-en="I document every step here: what I'm studying, what I've built, what I've certified. <strong>This is a live portfolio</strong> — it grows as I grow.">Je documente chaque étape ici : ce que j'étudie, ce que j'ai construit, ce que j'ai certifié. <strong>C'est un portfolio vivant</strong> — il grandit avec moi.</p>
+      <p data-fr="Mon objectif : bâtir une carrière où <strong>mes compétences parlent plus fort que mon adresse</strong>." data-en="My goal: build a career where <strong>my skills speak louder than my address</strong>.">Mon objectif : bâtir une carrière où <strong>mes compétences parlent plus fort que mon adresse</strong>.</p>
+    </div>
+    <div>
+      <div class="about-card">
+        <div class="about-card-title" data-fr="Informations personnelles" data-en="Profile Details">Informations personnelles</div>
+        <div class="info-row"><span class="info-label" data-fr="Nom complet" data-en="Full Name">Nom complet</span><span class="info-val">Didier Romuald TAFE</span></div>
+        <div class="info-row"><span class="info-label" data-fr="Ville" data-en="Location">Ville</span><span class="info-val">Val-d'Or, Québec 🇨🇦</span></div>
+        <div class="info-row"><span class="info-label" data-fr="Origine" data-en="Origin">Origine</span><span class="info-val">Cameroun 🇨🇲</span></div>
+        <div class="info-row"><span class="info-label" data-fr="Poste visé" data-en="Target Role">Poste visé</span><span class="info-val" data-fr="Chef de Projet Junior" data-en="Junior Project Manager">Chef de Projet Junior</span></div>
+        <div class="info-row"><span class="info-label" data-fr="Langues" data-en="Languages">Langues</span><span class="info-val">Français · Anglais</span></div>
+        <div class="info-row"><span class="info-label" data-fr="Mode de travail" data-en="Work Mode">Mode de travail</span><span class="info-val" data-fr="Télétravail / Hybride" data-en="Remote / Hybrid">Télétravail / Hybride</span></div>
+        <div class="info-row"><span class="info-label">Statut</span><span class="info-val" style="color:#4ade80" data-fr="Ouvert aux opportunités" data-en="Open to Opportunities">Ouvert aux opportunités</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-tag" data-fr="Compétences" data-en="Skills">Compétences</div>
+    <h2 data-fr="Ce que je suis en train de <em>construire</em>" data-en="What I am <em>building</em>">Ce que je suis en train de <em>construire</em></h2>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-header"><span class="skill-name">Scrum / Agile (PSM I)</span><span class="badge badge-progress" data-fr="En cours" data-en="In Progress">En cours</span></div>
+      <div class="skill-desc" data-fr="Apprentissage du framework Scrum via Scrum.org. Préparation à l'examen PSM I." data-en="Learning the Scrum framework from Scrum.org. Preparing for the PSM I exam.">Apprentissage du framework Scrum via Scrum.org. Préparation à l'examen PSM I.</div>
+      <div class="skill-bar-bg"><div class="skill-bar" style="width:60%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header"><span class="skill-name" data-fr="Gestion de Projet (CAPM)" data-en="Project Management (CAPM)">Gestion de Projet (CAPM)</span><span class="badge badge-todo" data-fr="Prévu — Mois 7" data-en="Planned — Month 7">Prévu — Mois 7</span></div>
+      <div class="skill-desc" data-fr="Certification PMI CAPM — référence pour les chefs de projet débutants au Canada." data-en="PMI Certified Associate in Project Management — gold standard entry-level cert in Canada.">Certification PMI CAPM — référence pour les chefs de projet débutants au Canada.</div>
+      <div class="skill-bar-bg"><div class="skill-bar" style="width:15%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header"><span class="skill-name">Jira & Asana</span><span class="badge badge-progress" data-fr="En cours" data-en="In Progress">En cours</span></div>
+      <div class="skill-desc" data-fr="Gestion de sprints, backlogs et tableaux de bord de projet." data-en="Managing sprints, backlogs and project boards in Jira and Asana.">Gestion de sprints, backlogs et tableaux de bord de projet.</div>
+      <div class="skill-bar-bg"><div class="skill-bar" style="width:40%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header"><span class="skill-name" data-fr="Microsoft Excel (Avancé)" data-en="Microsoft Excel (Advanced)">Microsoft Excel (Avancé)</span><span class="badge badge-progress" data-fr="En cours" data-en="In Progress">En cours</span></div>
+      <div class="skill-desc" data-fr="Tableaux croisés dynamiques, tableaux de bord, formules avancées et budgets de projet." data-en="Pivot tables, dashboards, advanced formulas, project budget templates.">Tableaux croisés dynamiques, tableaux de bord, formules avancées et budgets de projet.</div>
+      <div class="skill-bar-bg"><div class="skill-bar" style="width:50%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header"><span class="skill-name">SQL</span><span class="badge badge-todo" data-fr="Prévu — Mois 4" data-en="Planned — Month 4">Prévu — Mois 4</span></div>
+      <div class="skill-desc" data-fr="Extraction et analyse de données — différenciateur clé pour un chef de projet." data-en="Data extraction and analysis — a key differentiator for project managers.">Extraction et analyse de données — différenciateur clé pour un chef de projet.</div>
+      <div class="skill-bar-bg"><div class="skill-bar" style="width:10%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header"><span class="skill-name">Power BI</span><span class="badge badge-todo" data-fr="Prévu — Mois 5" data-en="Planned — Month 5">Prévu — Mois 5</span></div>
+      <div class="skill-desc" data-fr="Création de tableaux de bord de données — très recherché sur le marché canadien." data-en="Building data dashboards and visual reports — high demand in Canada.">Création de tableaux de bord de données — très recherché sur le marché canadien.</div>
+      <div class="skill-bar-bg"><div class="skill-bar" style="width:5%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header"><span class="skill-name" data-fr="Gestion des Risques & Budgets" data-en="Risk & Budget Management">Gestion des Risques & Budgets</span><span class="badge badge-todo" data-fr="Prévu — Mois 8" data-en="Planned — Month 8">Prévu — Mois 8</span></div>
+      <div class="skill-desc" data-fr="Matrices de risques, estimation des coûts, rapports aux parties prenantes." data-en="Risk matrices, cost estimation, and stakeholder reporting.">Matrices de risques, estimation des coûts, rapports aux parties prenantes.</div>
+      <div class="skill-bar-bg"><div class="skill-bar" style="width:5%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header"><span class="skill-name">PMP</span><span class="badge badge-todo" data-fr="Prévu — An 3" data-en="Planned — Year 3">Prévu — An 3</span></div>
+      <div class="skill-desc" data-fr="Project Management Professional — la certification la plus reconnue. Nécessite 3 ans d'expérience." data-en="Project Management Professional — the highest PM credential. Requires 3 years of experience.">Project Management Professional — la certification la plus reconnue. Nécessite 3 ans d'expérience.</div>
+      <div class="skill-bar-bg"><div class="skill-bar" style="width:2%"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="reveal">
+    <div class="section-tag" data-fr="Ma feuille de route" data-en="My Roadmap">Ma feuille de route</div>
+    <h2 data-fr="18 mois pour devenir <em>Chef de Projet Junior</em>" data-en="18 months to become a <em>Junior Project Manager</em>">18 mois pour devenir <em>Chef de Projet Junior</em></h2>
+  </div>
+  <div class="timeline reveal">
+
+    <div class="tl-item active">
+      <div class="tl-dot">1</div>
+      <div class="tl-content">
+        <div class="tl-period" data-fr="Mois 1–3 · Maintenant" data-en="Months 1–3 · Now">Mois 1–3 · Maintenant</div>
+        <div class="tl-title" data-fr="Fondations — Scrum + Portfolio" data-en="Foundation — Scrum + Portfolio">Fondations — Scrum + Portfolio</div>
+        <div class="tl-desc" data-fr="Obtenir la certification PSM I. Lancer ce site portfolio. Apprendre Jira et les bases de la gestion de projet." data-en="Get PSM I certified. Launch this portfolio website. Learn Jira and project management basics.">Obtenir la certification PSM I. Lancer ce site portfolio. Apprendre Jira et les bases de la gestion de projet.</div>
+        <div class="tl-tags"><span class="tl-tag">PSM I</span><span class="tl-tag">Jira</span><span class="tl-tag">Portfolio</span><span class="tl-tag">LinkedIn</span></div>
+        <div class="tl-salary">🎯 45 000 $–60 000 $/an</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">2</div>
+      <div class="tl-content">
+        <div class="tl-period" data-fr="Mois 4–6" data-en="Months 4–6">Mois 4–6</div>
+        <div class="tl-title" data-fr="Compétences Data — SQL + Power BI" data-en="Data Skills — SQL + Power BI">Compétences Data — SQL + Power BI</div>
+        <div class="tl-desc" data-fr="Apprendre SQL et construire mon premier tableau de bord Power BI. Les données font toute la différence." data-en="Learn SQL and build my first Power BI dashboard. Data skills make PMs stand out.">Apprendre SQL et construire mon premier tableau de bord Power BI. Les données font toute la différence.</div>
+        <div class="tl-tags"><span class="tl-tag">SQL</span><span class="tl-tag">Power BI</span><span class="tl-tag">Excel Avancé</span><span class="tl-tag">Dashboard</span></div>
+        <div class="tl-salary">🎯 60 000 $–75 000 $/an</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">3</div>
+      <div class="tl-content">
+        <div class="tl-period" data-fr="Mois 7–9" data-en="Months 7–9">Mois 7–9</div>
+        <div class="tl-title" data-fr="Certification CAPM + Premières candidatures" data-en="CAPM Certification + First Applications">Certification CAPM + Premières candidatures</div>
+        <div class="tl-desc" data-fr="Réussir l'examen CAPM du PMI. Commencer à postuler pour des postes de Coordinateur et Chef de Projet Junior." data-en="Pass the CAPM exam. Start applying for Junior PM and Project Coordinator roles.">Réussir l'examen CAPM du PMI. Commencer à postuler pour des postes de Coordinateur et Chef de Projet Junior.</div>
+        <div class="tl-tags"><span class="tl-tag">CAPM</span><span class="tl-tag">Gestion des risques</span><span class="tl-tag">Budget</span><span class="tl-tag">Candidatures</span></div>
+        <div class="tl-salary">🎯 65 000 $–80 000 $/an</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">4</div>
+      <div class="tl-content">
+        <div class="tl-period" data-fr="Mois 10–12" data-en="Months 10–12">Mois 10–12</div>
+        <div class="tl-title" data-fr="Décrocher mon premier emploi en gestion de projet" data-en="Land My First PM Role">Décrocher mon premier emploi en gestion de projet</div>
+        <div class="tl-desc" data-fr="Préparation aux entretiens, portfolio complet, LinkedIn optimisé. Réception de ma première offre d'emploi." data-en="Interview preparation, portfolio complete, LinkedIn optimized. Receive first PM job offer.">Préparation aux entretiens, portfolio complet, LinkedIn optimisé. Réception de ma première offre d'emploi.</div>
+        <div class="tl-tags"><span class="tl-tag">Télétravail</span><span class="tl-tag">Entretiens</span><span class="tl-tag">Réseautage</span><span class="tl-tag">Méthode STAR</span></div>
+        <div class="tl-salary">🎯 70 000 $–90 000 $/an</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">5</div>
+      <div class="tl-content">
+        <div class="tl-period" data-fr="Mois 13–18" data-en="Months 13–18">Mois 13–18</div>
+        <div class="tl-title" data-fr="Progresser → Préparer le PMP" data-en="Grow → PMP in Progress">Progresser → Préparer le PMP</div>
+        <div class="tl-desc" data-fr="Performer dans mon premier poste. Commencer la préparation au PMP. Viser le profil de Chef de Projet Sénior." data-en="Perform in first role. Begin PMP exam preparation. Build toward Senior PM profile.">Performer dans mon premier poste. Commencer la préparation au PMP. Viser le profil de Chef de Projet Sénior.</div>
+        <div class="tl-tags"><span class="tl-tag">PMP</span><span class="tl-tag">Leadership</span><span class="tl-tag">Mentorat</span><span class="tl-tag">Augmentation</span></div>
+        <div class="tl-salary">🎯 85 000 $–130 000 $/an</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-tag" data-fr="Projets" data-en="Projects">Projets</div>
+    <h2 data-fr="Ce que j'ai <em>construit</em>" data-en="What I have <em>built</em>">Ce que j'ai <em>construit</em></h2>
+  </div>
+  <div class="projects-grid reveal">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="badge badge-progress" data-fr="En cours" data-en="In Progress">En cours</div>
+      <div class="project-title" data-fr="Simulation de Sprint Agile — Lancement d'une app" data-en="Agile Sprint Simulation — App Launch">Simulation de Sprint Agile — Lancement d'une app</div>
+      <div class="project-desc" data-fr="Simulation d'un lancement d'application mobile géré dans Jira. Inclut : backlog, planification de sprint, rétrospective et rapport aux parties prenantes." data-en="A simulated mobile app launch project managed in Jira. Includes backlog, sprint planning, retrospective and stakeholder report.">Simulation d'un lancement d'application mobile géré dans Jira. Inclut : backlog, planification de sprint, rétrospective et rapport aux parties prenantes.</div>
+      <div class="project-tools"><span class="tool-tag">Jira</span><span class="tool-tag">Agile</span><span class="tool-tag">Project Charter</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="badge badge-todo" data-fr="Prévu — Mois 5" data-en="Coming — Month 5">Prévu — Mois 5</div>
+      <div class="project-title" data-fr="Tableau de Bord — Économie du Québec" data-en="Québec Economic Dashboard">Tableau de Bord — Économie du Québec</div>
+      <div class="project-desc" data-fr="Tableau de bord Power BI avec les données de Statistique Canada. Tendances d'emploi en Abitibi-Témiscamingue." data-en="A Power BI dashboard using Statistics Canada open data. Employment trends in Abitibi-Témiscamingue.">Tableau de bord Power BI avec les données de Statistique Canada. Tendances d'emploi en Abitibi-Témiscamingue.</div>
+      <div class="project-tools"><span class="tool-tag">Power BI</span><span class="tool-tag">SQL</span><span class="tool-tag">Stats Canada</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="badge badge-todo" data-fr="Prévu — Mois 8" data-en="Coming — Month 8">Prévu — Mois 8</div>
+      <div class="project-title" data-fr="Plan de Projet Complet — Événement Communautaire" data-en="Full Project Plan — Community Event">Plan de Projet Complet — Événement Communautaire</div>
+      <div class="project-desc" data-fr="Plan de bout en bout : portée, calendrier, budget, matrice des risques et leçons apprises." data-en="End-to-end project plan: scope, schedule, budget, risk matrix and lessons learned document.">Plan de bout en bout : portée, calendrier, budget, matrice des risques et leçons apprises.</div>
+      <div class="project-tools"><span class="tool-tag">Excel</span><span class="tool-tag">Risk Matrix</span><span class="tool-tag">Budget</span><span class="tool-tag">CAPM</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-tag" style="justify-content:center" data-fr="Me contacter" data-en="Get in Touch">Me contacter</div>
+    <h2 data-fr="Travaillons <em>ensemble</em>" data-en="Let's <em>connect</em>">Travaillons <em>ensemble</em></h2>
+  </div>
+  <p class="contact-sub reveal" data-fr="Je suis ouvert aux postes de Chef de Projet Junior, Coordinateur de Projet, et aux opportunités à distance partout au Canada." data-en="I am open to Junior PM roles, Project Coordinator positions, and remote opportunities across Canada.">Je suis ouvert aux postes de Chef de Projet Junior, Coordinateur de Projet, et aux opportunités à distance partout au Canada.</p>
+  <div class="contact-links reveal">
+    <a href="https://linkedin.com/in/" class="contact-link"><span style="font-weight:700">in</span> LinkedIn</a>
+    <a href="mailto:votre@email.com" class="contact-link"><span>✉</span> Email</a>
+    <a href="https://github.com/" class="contact-link"><span>⌥</span> GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Didier Romuald TAFE</span>
+  <span>Val-d'Or, Québec · Canada · 2025</span>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-fr][data-en]').forEach(el => {
+      el.innerHTML = el.getAttribute('data-' + lang);
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+    });
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
